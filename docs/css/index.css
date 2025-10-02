@@ -1,0 +1,41 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
+
+#main > .columns {
+  min-height: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  background: whitesmoke;
+  min-height: 100%;
+}
+
+/* Styles for the code editor */
+.textarea.is-family-monospace {
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Output box */
+.box pre {
+  overflow: auto;
+  max-height: 400px;
+}
+
+/* Custom colors */
+.has-background-light {
+  background-color: #f5f5f5;
+}

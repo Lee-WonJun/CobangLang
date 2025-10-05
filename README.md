@@ -9,3 +9,7 @@
 Cobang 은 Fin-tech 에 딱히 최적화 되지는 않았지만, Fin-tech 회사 구성원의 친목을 도모할수 있도록 설계된 High-Level Language 입니다. 
 
 주로 PFCT 의 Core Banking 구성원들 사이의 유행어와 Jargon 에 영감을 받은 이 프로그래밍 언어를 통하여 금융시장의 문제점을 해결하고자 합니다.
+
+
+# 사용해보기
+[[WEB (WASM)]](https://lee-wonjun.github.io/CobangLang/) 에서 바로 사용 가능합니다.

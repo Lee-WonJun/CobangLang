@@ -1,70 +1,61 @@
-<div class="columns">
-  <aside class="column sidebar is-narrow">
-    <section class="section">
-      <nav class="menu">
-        <ul class="menu-list">
-          ${Menu}
-          <template id="MenuItem">
-            <li><a class="${Active}" href="${Url}">${Text}</a></li>
-          </template>
-        </ul>
-      </nav>
-    </section>
-  </aside>
-  <div class="column">
-    <section class="section">
-      ${Body}
+<div class="editor-container">
+  ${Body}
 
-      <div id="notification-area">
-        <div>${Error}</div>
-      </div>
-
-      <template id="Home">
-        <div class="content">
-          <h1 class="title">Cobang Language Interpreter</h1>
-          
-          <div class="columns">
-            <div class="column">
-              <h2 class="subtitle">Code</h2>
-              <div class="field">
-                <div class="control">
-                  ${Code}
-                </div>
-              </div>
-              
-              <div class="field is-grouped">
-                <div class="control">
-                  <button onclick="${RunCode}" class="button is-primary">Run Code</button>
-                </div>
-                <div class="control">
-                  <button onclick="${ClearOutput}" class="button">Clear Output</button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="column">
-              <h2 class="subtitle">Output</h2>
-              <div class="box">
-                ${Output}
-              </div>
-            </div>
-          </div>
-          
-          <div class="content mt-4">
-            <h3>Cobang Language Example</h3>
-            <pre class="has-background-light p-4">알로하~ 원준님
-알로하~ 두번째님
-저 필요하신분~~~ 원준님 ?
-원준님 요즘 어떠신가요?</pre>
-      </template>
-
-      <template id="ErrorNotification">
-        <div class="notification is-warning">
-          <button class="delete ${HideClass}" onclick="${Hide}"></button>
-          ${Text}
-        </div>
-      </template>
-
-    </section>
+  <div id="notification-area">
+    <div>${Error}</div>
   </div>
+
+  <template id="Home">
+    <div class="editor-layout">
+      <div class="editor-header">
+        <div class="header-left">
+          <h1 class="title is-4 mb-0">Cobang Playground</h1>
+        </div>
+        <div class="header-right">
+          <button onclick="${RunCode}" class="button is-success is-medium">
+            <span class="icon"><i>&gt;</i></span>
+            <span>Run</span>
+          </button>
+          <button onclick="${ClearOutput}" class="button is-light is-medium">Clear</button>
+        </div>
+      </div>
+      
+      <div class="editor-panels">
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">Code Editor</span>
+            <span class="panel-hint">Cobang Lang</span>
+          </div>
+          <div class="panel-content">
+            ${Code}
+          </div>
+        </div>
+        
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">Output</span>
+          </div>
+          <div class="panel-content output-panel">
+            ${Output}
+          </div>
+        </div>
+      </div>
+      
+      <div class="editor-footer">
+        <details class="example-section">
+          <summary>Example Code</summary>
+          <pre>Aloha~ Wonjun
+I need you~~~ Wonjun ?
+Wonjun, how are you?</pre>
+        </details>
+      </div>
+    </div>
+  </template>
+
+  <template id="ErrorNotification">
+    <div class="notification is-danger">
+      <button class="delete ${HideClass}" onclick="${Hide}"></button>
+      ${Text}
+    </div>
+  </template>
 </div>

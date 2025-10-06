@@ -108,18 +108,8 @@ let homePage model dispatch =
         )
         .Elt()
 
-let menuItem (model: Model) (page: Page) (text: string) =
-    Main.MenuItem()
-        .Active(if model.page = page then "is-active" else "")
-        .Url(router.Link page)
-        .Text(text)
-        .Elt()
-
 let view model dispatch =
     Main()
-        .Menu(
-            menuItem model Home "Cobang Interpreter"
-        )
         .Body(homePage model dispatch)
         .Error(
             cond model.error <| function

@@ -84,28 +84,10 @@ type Main = Template<"wwwroot/main.html">
 
 let homePage model dispatch =
     Main.Home()
-        .Code(
-            textarea {
-                attr.``class`` "textarea is-family-monospace"
-                attr.rows 15
-                attr.placeholder "Enter Cobang code here..."
-                on.change (fun e -> dispatch (SetCode (e.Value.ToString())))
-                text model.code
-            }
-        )
+        .Code(model.code, fun code -> dispatch (SetCode code))
         .RunCode(fun _ -> dispatch RunCode)
         .ClearOutput(fun _ -> dispatch ClearOutput)
-        .Output(
-            pre {
-                attr.``class`` "has-background-light p-4"
-                attr.style "min-height: 300px; font-family: monospace; white-space: pre-wrap;"
-                
-                if String.IsNullOrEmpty model.output then
-                    "// Output will appear here after running code"
-                else
-                    text model.output
-            }
-        )
+        .Output(model.output)
         .Elt()
 
 let view model dispatch =
@@ -124,8 +106,6 @@ let view model dispatch =
 
 type MyApp() =
     inherit ProgramComponent<Model, Message>()
-
-    override _.CssScope = CssScopes.MyApp
 
     [<Inject>]
     member val HttpClient = Unchecked.defaultof<HttpClient> with get, set

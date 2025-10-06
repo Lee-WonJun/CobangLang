@@ -57,7 +57,7 @@ let update (http: HttpClient) message model =
     | RunCode ->
         try
             let output = 
-                match runParserOnString program  () "kwanyulang" model.code with
+                match runParserOnString program  () "cobang" model.code with
                 | Success(result, _, _) ->
                     interpret result |> fun o -> o.StandardOutput
                 | Failure(errorMsg, _, _) ->

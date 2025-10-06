@@ -1,4 +1,4 @@
-﻿module Parser
+module Parser
 
 open AST
 open FParsec
@@ -10,7 +10,8 @@ let trim (s:string) = s.Trim()
 let statement, statementRef = createParserForwardedToRef<Statement, unit>()
 
 // Helper parsers
-let ws = spaces
+let comment = pstring "호호" >>. skipRestOfLine true
+let ws = spaces >>. optional comment >>. spaces
 let pnumber = fun stream -> pint32 .>> ws <| stream
 
 // Identifier parsers
@@ -126,6 +127,13 @@ let whileBlock =
         return WhileStatement(block)
     }
 
+
+let sleep =
+    parse {
+        let! counts = many1 (pstring "스탠덥")
+        let! _ = pstring "스탠덥 하시죠~" .>> ws
+        return Sleep(counts.Length)
+    }
 // Register all statement types
 do statementRef := choice [
         attempt ifBlock
@@ -133,6 +141,7 @@ do statementRef := choice [
         attempt varDeclare
         attempt varAssignNegative
         attempt calculation
+        attempt sleep
         attempt output
         attempt returnValue
         ]

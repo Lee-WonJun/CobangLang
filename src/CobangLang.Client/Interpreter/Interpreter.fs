@@ -1,4 +1,4 @@
-﻿module Interpreter
+module Interpreter
 
 open AST
 open System.Collections.Generic

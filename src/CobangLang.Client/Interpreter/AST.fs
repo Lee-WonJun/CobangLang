@@ -1,4 +1,4 @@
-﻿module AST
+module AST
 
 type Ops = Add | Sub | Mul | Div
 

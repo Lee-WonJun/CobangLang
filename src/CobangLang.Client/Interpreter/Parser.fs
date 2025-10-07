@@ -12,15 +12,11 @@ let statement, statementRef = createParserForwardedToRef<Statement, unit>()
 // Helper parsers
 let comment = pstring "호호" >>. skipRestOfLine true
 let ws = spaces >>. optional comment >>. spaces
-let pnumber = fun stream -> pint32 .>> ws <| stream
+let pnumber = pint32 .>> ws
 
-// Identifier parsers
-let identifierSentenceFactory endSentences =
-    let choiceString = choice (List.map pstring endSentences)
-    fun stream -> manyCharsTill anyChar choiceString .>> ws <| stream
-
+// Identifier parser
 let identifierIndependent =
-    fun stream -> many1Satisfy (fun c -> not (Char.IsWhiteSpace c)) <| stream
+    many1Satisfy (fun c -> c <> '?' && c <> '~' && not (Char.IsWhiteSpace c))
 
 // Variable declaration parser: "알로하~ 원준님"
 let varDeclare =
@@ -49,9 +45,8 @@ let calculation =
     parse {
         let! _ = pstring "저 필요하신분" .>> ws
         let! tildes = many (pchar '~')
-        let! _ = ws
+        let! _ = spaces
         let! var = identifierIndependent
-        let! _ = ws
         let! questions = many (pchar '?')
         let! _ = ws
         
@@ -139,8 +134,8 @@ do statementRef := choice [
         attempt ifBlock
         attempt whileBlock
         attempt varDeclare
-        attempt varAssignNegative
         attempt calculation
+        attempt varAssignNegative
         attempt sleep
         attempt output
         attempt returnValue

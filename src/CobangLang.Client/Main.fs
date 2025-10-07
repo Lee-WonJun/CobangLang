@@ -1,12 +1,9 @@
 module CobangLang.Client.Main
 
-open System
 open System.Net.Http
-open System.Net.Http.Json
 open Microsoft.AspNetCore.Components
 open Elmish
 open Bolero
-open Bolero.Html
 open FParsec
 open Parser
 open Interpreter

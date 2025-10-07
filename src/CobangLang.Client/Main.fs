@@ -40,14 +40,19 @@ let update (http: HttpClient) message model =
 
     | RunCode ->
         { model with output = "" }, Cmd.ofEffect (fun dispatch ->
-            try
-                match runParserOnString program () "cobang" model.code with
-                | Success(result, _, _) ->
-                    interpret result (fun x -> dispatch (WriteOutput x)) |> (fun o -> dispatch (WriteOutput (sprintf "return %d code" o.Return )))
-                | Failure(errorMsg, _, _) ->
-                    dispatch (WriteOutput (sprintf "Parsing failed: %s" errorMsg))
-            with ex ->
-                dispatch (WriteOutput ex.Message)
+            Async.StartImmediate(
+                async {
+                    try
+                        match runParserOnString program () "cobang" model.code with
+                        | Success(result, _, _) ->
+                            let! state = interpretAsync result (fun x -> dispatch (WriteOutput x))
+                            dispatch (WriteOutput (sprintf "\nreturn %d code" state.Return))
+                        | Failure(errorMsg, _, _) ->
+                            dispatch (WriteOutput (sprintf "Parsing failed: %s" errorMsg))
+                    with ex ->
+                        dispatch (WriteOutput ex.Message)
+                }
+            )
         )
 
     | ClearOutput ->

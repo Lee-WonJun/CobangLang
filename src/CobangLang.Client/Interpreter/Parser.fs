@@ -92,7 +92,10 @@ let returnValue =
 
 // Break statement: "여러분~, 먼저 들어가보겠습니다"
 let breakSign = 
-    pstring "여러분" .>> many (pchar '~') .>> pstring ", 먼저 들어가보겠습니다" .>> ws >>% Break
+    (pstring "여러분" .>> many (pchar '~') .>> pstring ", 먼저 들어가보겠습니다" .>> ws )
+    <|>
+    (pstring "제가 가서 대가리 박을게요" .>> ws )
+    >>% Break
 
 // IF: "원준님 말이 되나요?" ... "ㅎㅎㅎㅎ 개웃김."
 let ifBlock =

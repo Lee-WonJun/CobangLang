@@ -126,9 +126,11 @@ let whileBlock =
 let sleep =
     parse {
         let! counts = many1 (pstring "스탠덥")
+        do! ws
         let! _ = pstring "스탠덥하시죠~" .>> ws
         return Sleep(counts.Length)
     }
+
 // Register all statement types
 do statementRef := choice [
         attempt ifBlock

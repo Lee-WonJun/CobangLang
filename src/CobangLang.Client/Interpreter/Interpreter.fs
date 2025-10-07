@@ -8,14 +8,16 @@ type Program = Statement list
 type SoftwareState = {
     Variables: Dictionary<string, int>
     mutable StandardOutput: string
+    mutable Return: int
 }
 
 type Signal = NormalSign | BreakSign | ReturnSign of int
 
-let interpret (program: Program) =
+let interpret (program: Program) onOutput =
     let state = {
         Variables = Dictionary()
         StandardOutput = ""
+        Return = 0
     }
 
     let rec exec program = 
@@ -55,16 +57,19 @@ let interpret (program: Program) =
         | Output(var, isAsciiOutput) :: rest -> 
             let v = state.Variables.[var]
             if not isAsciiOutput then
+                onOutput (sprintf "%d" v)
                 state.StandardOutput <- state.StandardOutput + (sprintf "%d" v)
                 printf "%d" v
             else
                 let ascil = v |> Convert.ToChar
+                onOutput (sprintf "%c" ascil)
                 state.StandardOutput <- state.StandardOutput + (sprintf "%c" ascil)
                 printf "%c" ascil
             exec rest
 
         | Return(var) :: _ -> // 프로그램 완전 종료
-             Signal.ReturnSign state.Variables.[var]
+            state.Return <- state.Variables.[var]
+            Signal.ReturnSign state.Variables.[var]
         | Break :: _ -> // While문 종료
             Signal.BreakSign
 

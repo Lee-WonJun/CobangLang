@@ -17,14 +17,12 @@ type Model =
     {
         code: string
         output: string
-        error: string option
     }
 
 let initModel =
     {
         code = ""
         output = ""
-        error = None
     }
 
 /// The Elmish application's update messages.
@@ -32,8 +30,7 @@ type Message =
     | SetCode of string
     | RunCode
     | ClearOutput
-    | Error of exn
-    | ClearError
+    | WriteOutput of string
 
 
 let update (http: HttpClient) message model =
@@ -42,27 +39,21 @@ let update (http: HttpClient) message model =
         { model with code = code }, Cmd.none
 
     | RunCode ->
-        try
-            let output = 
-                match runParserOnString program  () "cobang" model.code with
+        { model with output = "" }, Cmd.ofEffect (fun dispatch ->
+            try
+                match runParserOnString program () "cobang" model.code with
                 | Success(result, _, _) ->
-                    interpret result |> fun o -> o.StandardOutput
+                    interpret result (fun x -> dispatch (WriteOutput x)) |> (fun o -> dispatch (WriteOutput (sprintf "return %d code" o.Return )))
                 | Failure(errorMsg, _, _) ->
-                    printfn "Parsing failed with error: %s" errorMsg
-                    "FAIL"
+                    dispatch (WriteOutput (sprintf "Parsing failed: %s" errorMsg))
+            with ex ->
+                dispatch (WriteOutput ex.Message)
+        )
 
-            { model with output = output }, Cmd.none
-        with ex ->
-            { model with error = Some ex.Message }, Cmd.none
-            
     | ClearOutput ->
         { model with output = "" }, Cmd.none
-
-    | Error exn ->
-        { model with error = Some exn.Message }, Cmd.none
-        
-    | ClearError ->
-        { model with error = None }, Cmd.none
+    | WriteOutput str ->
+        { model with output = model.output + str }, Cmd.none
 
 type Main = Template<"wwwroot/main.html">
 

@@ -13,7 +13,7 @@ let parse code =
 
 let run code =
     let ast = parse code
-    interpret ast
+    Async.RunSynchronously (interpretAsync ast (fun _ -> ()))
 
 [<Fact>]
 let ``변수 선언 - 알로하~ 변수명`` () =

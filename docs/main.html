@@ -1,70 +1,106 @@
-<div class="columns">
-  <aside class="column sidebar is-narrow">
-    <section class="section">
-      <nav class="menu">
-        <ul class="menu-list">
-          ${Menu}
-          <template id="MenuItem">
-            <li><a class="${Active}" href="${Url}">${Text}</a></li>
-          </template>
-        </ul>
-      </nav>
-    </section>
-  </aside>
-  <div class="column">
-    <section class="section">
-      ${Body}
+﻿<div class="editor-container">
+  ${Body}
 
-      <div id="notification-area">
-        <div>${Error}</div>
-      </div>
-
-      <template id="Home">
-        <div class="content">
-          <h1 class="title">Cobang Language Interpreter</h1>
-          
-          <div class="columns">
-            <div class="column">
-              <h2 class="subtitle">Code</h2>
-              <div class="field">
-                <div class="control">
-                  ${Code}
-                </div>
-              </div>
-              
-              <div class="field is-grouped">
-                <div class="control">
-                  <button onclick="${RunCode}" class="button is-primary">Run Code</button>
-                </div>
-                <div class="control">
-                  <button onclick="${ClearOutput}" class="button">Clear Output</button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="column">
-              <h2 class="subtitle">Output</h2>
-              <div class="box">
-                ${Output}
-              </div>
-            </div>
-          </div>
-          
-          <div class="content mt-4">
-            <h3>Cobang Language Example</h3>
-            <pre class="has-background-light p-4">�˷���~ ���ش�
-�˷���~ �ι�°��
-�� �ʿ��Ͻź�~~~ ���ش� ?
-���ش� ���� ��Ű���?</pre>
-      </template>
-
-      <template id="ErrorNotification">
-        <div class="notification is-warning">
-          <button class="delete ${HideClass}" onclick="${Hide}"></button>
-          ${Text}
-        </div>
-      </template>
-
-    </section>
+  <div id="notification-area">
+    <div>${Error}</div>
   </div>
+
+  <template id="Home">
+    <div class="editor-layout">
+      <div class="editor-header">
+        <div class="header-left">
+          <h1 class="title is-4 mb-0">Cobang Playground</h1>
+        </div>
+        <div class="header-right">
+          <button onclick="${RunCode}" class="button is-success is-medium">
+            <span class="icon"><i>&gt;</i></span>
+            <span>Run</span>
+          </button>
+          <button onclick="${ClearOutput}" class="button is-light is-medium">Clear</button>
+        </div>
+      </div>
+      
+      <div class="editor-panels">
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">Code Editor</span>
+            <span class="panel-hint">Cobang Lang</span>
+          </div>
+          <div class="panel-content">
+            <textarea class="textarea is-family-monospace" rows="15" placeholder="Enter Cobang code here..." bind="${Code}"></textarea>
+          </div>
+        </div>
+        
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">Terminal</span>
+          </div>
+          <div class="panel-content output-panel">
+            ${Output}
+          </div>
+        </div>
+      </div>
+      
+      <div class="editor-footer">
+        <details class="example-section">
+          <summary>Docs</summary>
+          <div class="doc-content">
+            <h3 class="doc-title">══ Cobang Language Documentation ══</h3>
+            
+            <div class="doc-section">■ 주석 (Comments)</div>
+            <div class="doc-item"><strong>호호</strong> → 한줄 주석. 이후 모든 내용 무시</div>
+            <div class="doc-example">예: 호호 이건 주석입니다</div>
+            
+            <div class="doc-section">■ 변수 선언 및 연산 (Variables)</div>
+            <div class="doc-item"><strong>알로하~~~ 변수명</strong> → 변수 선언 (초기값 0)</div>
+            <div class="doc-example">예: 알로하~ 원준님 (원준님 = 0)</div>
+            <div class="doc-note">※ ~의 개수는 무관, 변수는 정수형(int)만 지원</div>
+            
+            <div class="doc-item"><strong>저 필요하신분~~~ 변수명???</strong> → 변수 += (~개수 - ?개수)</div>
+            <div class="doc-example">예: 저 필요하신분~~~ 원준님? → 원준님 += (3 - 1) = 원준님 + 2</div>
+            <div class="doc-note">※ ~로 증가, ?로 감소. 개수를 세어 계산</div>
+            
+            <div class="doc-item"><strong>변수명 너무한거 아니에요?</strong> → 변수 = -변수 (부호 반전)</div>
+            <div class="doc-example">예: 원준님 = 5일 때, 원준님 너무한거 아니에요? → 원준님 = -5</div>
+            
+            <div class="doc-section">■ 출력 (Output)</div>
+            <div class="doc-item"><strong>변수명 요즘 어떠신가요?</strong> → 변수값을 숫자로 출력</div>
+            <div class="doc-example">예: 원준님 = 65일 때, 원준님 요즘 어떠신가요? → 출력: 65</div>
+            
+            <div class="doc-item"><strong>변수명 요즘 어떠신가요??</strong> → 변수값을 ASCII 문자로 출력</div>
+            <div class="doc-example">예: 원준님 = 65일 때, 원준님 요즘 어떠신가요?? → 출력: A</div>
+            <div class="doc-note">※ ?가 2개 이상이면 ASCII 모드</div>
+            
+            <div class="doc-section">■ 제어문 (Control Flow)</div>
+            <div class="doc-item"><strong>변수명 말이 되나요?</strong><br>&nbsp;&nbsp;...(코드 블록)...<br><strong>ㅎㅎㅎㅎ 개웃김.</strong></div>
+            <div class="doc-example">→ if문: 변수 > 0이면 블록 실행</div>
+            <div class="doc-note">※ 조건: 변수값이 양수(> 0)일 때만 실행</div>
+            
+            <div class="doc-item"><strong>집가서 더 볼게요~~~</strong><br>&nbsp;&nbsp;...(코드 블록)...<br><strong>ㅎㅎㅎㅎ 개웃김.</strong></div>
+            <div class="doc-example">→ while문: 무한 루프 (break로 탈출)</div>
+            <div class="doc-note">※ ~의 개수는 무관. 조건 없는 무한 루프</div>
+            
+            <div class="doc-item"><strong>여러분~, 먼저 들어가보겠습니다</strong> → break (while문 탈출)</div>
+            <div class="doc-note">※ while문 내부에서만 사용 가능</div>
+            
+            <div class="doc-section">■ 기타 (Misc)</div>
+            <div class="doc-item"><strong>변수명 오~~~ 너무 좋습니다.</strong> → return (프로그램 종료, 변수값 반환)</div>
+            <div class="doc-example">예: 원준님 오~ 너무 좋습니다. → 원준님 값을 반환하고 종료</div>
+            <div class="doc-note">※ ~의 개수는 무관</div>
+            
+            <div class="doc-item"><strong>스탠덥스탠덥스탠덥 스탠덥하시죠~</strong> → sleep ("스탠덥" 개수만큼 초 대기)</div>
+            <div class="doc-example">예: 스탠덥스탠덥스탠덥 스탠덥하시죠~ → 3초 대기</div>
+            <div class="doc-note">※ "스탠덥"을 반복한 횟수 = 대기 시간(초)</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </template>
+
+  <template id="ErrorNotification">
+    <div class="notification is-danger">
+      <button class="delete ${HideClass}" onclick="${Hide}"></button>
+      ${Text}
+    </div>
+  </template>
 </div>

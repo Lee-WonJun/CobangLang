@@ -15,14 +15,9 @@ open Interpreter
 // Import only the AST module
 open AST
 
-/// Routing endpoints definition.
-type Page =
-    | [<EndPoint "/">] Home
-
 /// The Elmish application's model.
 type Model =
     {
-        page: Page
         code: string
         output: string
         error: string option
@@ -30,7 +25,6 @@ type Model =
 
 let initModel =
     {
-        page = Home
         code = ""
         output = ""
         error = None
@@ -38,7 +32,6 @@ let initModel =
 
 /// The Elmish application's update messages.
 type Message =
-    | SetPage of Page
     | SetCode of string
     | RunCode
     | ClearOutput
@@ -48,9 +41,6 @@ type Message =
 
 let update (http: HttpClient) message model =
     match message with
-    | SetPage page ->
-        { model with page = page }, Cmd.none
-
     | SetCode code ->
         { model with code = code }, Cmd.none
 
@@ -77,31 +67,14 @@ let update (http: HttpClient) message model =
     | ClearError ->
         { model with error = None }, Cmd.none
 
-/// Connects the routing system to the Elmish application.
-let router = Router.infer SetPage (fun model -> model.page)
-
 type Main = Template<"wwwroot/main.html">
 
-let homePage model dispatch =
+let view model dispatch =
     Main.Home()
         .Code(model.code, fun code -> dispatch (SetCode code))
         .RunCode(fun _ -> dispatch RunCode)
         .ClearOutput(fun _ -> dispatch ClearOutput)
         .Output(model.output)
-        .Elt()
-
-let view model dispatch =
-    Main()
-        .Body(homePage model dispatch)
-        .Error(
-            cond model.error <| function
-            | None -> empty()
-            | Some err ->
-                Main.ErrorNotification()
-                    .Text(err)
-                    .Hide(fun _ -> dispatch ClearError)
-                    .Elt()
-        )
         .Elt()
 
 type MyApp() =
@@ -113,4 +86,4 @@ type MyApp() =
     override this.Program =
         let update = update this.HttpClient
         Program.mkProgram (fun _ -> initModel, Cmd.none) update view
-        |> Program.withRouter router
+        |> Program.withConsoleTrace

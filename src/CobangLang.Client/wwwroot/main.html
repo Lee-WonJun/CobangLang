@@ -46,22 +46,51 @@
           <summary>Docs</summary>
           <div class="doc-content">
             <h3 class="doc-title">══ Cobang Language Documentation ══</h3>
-            <div class="doc-section">■ 주석</div>
-            <div class="doc-item">호호 → 한줄 주석</div>
-            <div class="doc-section">■ 변수</div>
-            <div class="doc-item">알로하~~~ 변수명 → 변수 선언</div>
-            <div class="doc-item">저 필요하신분~~~ 변수명? → 변수 += (~개수 - ?개수)</div>
-            <div class="doc-item">변수명 너무한거 아니에요? → 변수 = -변수</div>
-            <div class="doc-section">■ 출력</div>
-            <div class="doc-item">변수명 요즘 어떠신가요? → 숫자 출력</div>
-            <div class="doc-item">변수명 요즘 어떠신가요?? → ASCII 출력</div>
-            <div class="doc-section">■ 제어문</div>
-            <div class="doc-item">변수명 말이 되나요? ... ㅎㅎㅎㅎ 개웃김. → if문</div>
-            <div class="doc-item">집가서 더 볼게요~~~ ... ㅎㅎㅎㅎ 개웃김. → while문</div>
-            <div class="doc-item">여러분~, 먼저 들어가보겠습니다 → break</div>
-            <div class="doc-section">■ 기타</div>
-            <div class="doc-item">변수명 오~~~ 너무 좋습니다. → return</div>
-            <div class="doc-item">스탠덥스탠덥스탠덥 하시죠~ → sleep</div>
+            
+            <div class="doc-section">■ 주석 (Comments)</div>
+            <div class="doc-item"><strong>호호</strong> → 한줄 주석. 이후 모든 내용 무시</div>
+            <div class="doc-example">예: 호호 이건 주석입니다</div>
+            
+            <div class="doc-section">■ 변수 선언 및 연산 (Variables)</div>
+            <div class="doc-item"><strong>알로하~~~ 변수명</strong> → 변수 선언 (초기값 0)</div>
+            <div class="doc-example">예: 알로하~ 원준님 (원준님 = 0)</div>
+            <div class="doc-note">※ ~의 개수는 무관, 변수는 정수형(int)만 지원</div>
+            
+            <div class="doc-item"><strong>저 필요하신분~~~ 변수명???</strong> → 변수 += (~개수 - ?개수)</div>
+            <div class="doc-example">예: 저 필요하신분~~~ 원준님? → 원준님 += (3 - 1) = 원준님 + 2</div>
+            <div class="doc-note">※ ~로 증가, ?로 감소. 개수를 세어 계산</div>
+            
+            <div class="doc-item"><strong>변수명 너무한거 아니에요?</strong> → 변수 = -변수 (부호 반전)</div>
+            <div class="doc-example">예: 원준님 = 5일 때, 원준님 너무한거 아니에요? → 원준님 = -5</div>
+            
+            <div class="doc-section">■ 출력 (Output)</div>
+            <div class="doc-item"><strong>변수명 요즘 어떠신가요?</strong> → 변수값을 숫자로 출력</div>
+            <div class="doc-example">예: 원준님 = 65일 때, 원준님 요즘 어떠신가요? → 출력: 65</div>
+            
+            <div class="doc-item"><strong>변수명 요즘 어떠신가요??</strong> → 변수값을 ASCII 문자로 출력</div>
+            <div class="doc-example">예: 원준님 = 65일 때, 원준님 요즘 어떠신가요?? → 출력: A</div>
+            <div class="doc-note">※ ?가 2개 이상이면 ASCII 모드</div>
+            
+            <div class="doc-section">■ 제어문 (Control Flow)</div>
+            <div class="doc-item"><strong>변수명 말이 되나요?</strong><br>&nbsp;&nbsp;...(코드 블록)...<br><strong>ㅎㅎㅎㅎ 개웃김.</strong></div>
+            <div class="doc-example">→ if문: 변수 > 0이면 블록 실행</div>
+            <div class="doc-note">※ 조건: 변수값이 양수(> 0)일 때만 실행</div>
+            
+            <div class="doc-item"><strong>집가서 더 볼게요~~~</strong><br>&nbsp;&nbsp;...(코드 블록)...<br><strong>ㅎㅎㅎㅎ 개웃김.</strong></div>
+            <div class="doc-example">→ while문: 무한 루프 (break로 탈출)</div>
+            <div class="doc-note">※ ~의 개수는 무관. 조건 없는 무한 루프</div>
+            
+            <div class="doc-item"><strong>여러분~, 먼저 들어가보겠습니다</strong> → break (while문 탈출)</div>
+            <div class="doc-note">※ while문 내부에서만 사용 가능</div>
+            
+            <div class="doc-section">■ 기타 (Misc)</div>
+            <div class="doc-item"><strong>변수명 오~~~ 너무 좋습니다.</strong> → return (프로그램 종료, 변수값 반환)</div>
+            <div class="doc-example">예: 원준님 오~ 너무 좋습니다. → 원준님 값을 반환하고 종료</div>
+            <div class="doc-note">※ ~의 개수는 무관</div>
+            
+            <div class="doc-item"><strong>스탠덥스탠덥스탠덥 스탠덥하시죠~</strong> → sleep ("스탠덥" 개수만큼 초 대기)</div>
+            <div class="doc-example">예: 스탠덥스탠덥스탠덥 스탠덥하시죠~ → 3초 대기</div>
+            <div class="doc-note">※ "스탠덥"을 반복한 횟수 = 대기 시간(초)</div>
           </div>
         </details>
       </div>

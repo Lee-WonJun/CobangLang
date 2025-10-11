@@ -21,13 +21,22 @@ let identifierIndependent =
 // Variable declaration parser: "알로하~ 원준님"
 let varDeclare =
     parse {
-        let! _ = pstring "알로하" .>> ws
-        let! tildes = many (pchar '~')
+        let! _ = pstring "알로하~"
         let! _ = ws
         let! var = identifierIndependent
         let! _ = ws
-        // Count the number of tildes but ignore it (default is 0)
         return VariableAssignment(var, Number(0))
+    }
+
+let varDeclare2 =
+    parse {
+        let! _ = pstring "알로하~~"
+        let! _ = ws
+        let! var = identifierIndependent
+        let! _ = ws
+        let! var2 = identifierIndependent
+        let! _ = ws
+        return VariableAssignment(var, Variable(var2))
     }
 
 // Variable assignment negative: "원준님 너무한거 아니에요?"
@@ -139,6 +148,7 @@ do statementRef := choice [
         attempt ifBlock
         attempt whileBlock
         attempt varDeclare
+        attempt varDeclare2
         attempt calculation
         attempt varAssignNegative
         attempt sleep

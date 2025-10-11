@@ -22,7 +22,7 @@ type Model =
 
 let initModel =
     {
-        code = Storage.InitialCode
+        code = snd Storage.examples.[0]
         output = ""
     }
 
@@ -32,12 +32,19 @@ type Message =
     | RunCode
     | ClearOutput
     | WriteOutput of string
+    | LoadExample of int
 
 
 let update (http: HttpClient) message model =
     match message with
     | SetCode code ->
         { model with code = code }, Cmd.none
+
+    | LoadExample idx ->
+        if idx >= 0 && idx < Storage.examples.Length then
+            { model with code = snd Storage.examples.[idx] }, Cmd.none
+        else
+            model, Cmd.none
 
     | RunCode ->
         { model with output = "" }, Cmd.ofEffect (fun dispatch ->
@@ -69,6 +76,7 @@ let view model dispatch =
         .RunCode(fun _ -> dispatch RunCode)
         .ClearOutput(fun _ -> dispatch ClearOutput)
         .Output(model.output)
+        .LoadExample(fun e -> dispatch (LoadExample (int (string e.Value))))
         .Elt()
 
 type MyApp() =

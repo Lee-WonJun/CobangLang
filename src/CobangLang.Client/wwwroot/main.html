@@ -11,6 +11,16 @@
         <div class="header-left">
           <h1 class="title is-4 mb-0">Cobang Playground</h1>
         </div>
+        <div class="header-center">
+          <div class="select">
+            <select onchange="${LoadExample}">
+              <option value="" disabled selected>Load Example...</option>
+              <option value="0">Hello World</option>
+              <option value="1">Timer</option>
+              <option value="2">Star</option>
+            </select>
+          </div>
+        </div>
         <div class="header-right">
           <button onclick="${RunCode}" class="button is-success is-medium">
             <span class="icon"><i>&gt;</i></span>
@@ -35,9 +45,7 @@
           <div class="panel-header">
             <span class="panel-title">Terminal</span>
           </div>
-          <div class="panel-content output-panel">
-            ${Output}
-          </div>
+          <div class="panel-content output-panel">${Output}</div>
         </div>
       </div>
       

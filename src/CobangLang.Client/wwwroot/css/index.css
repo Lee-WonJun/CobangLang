@@ -39,11 +39,41 @@ body {
   padding: 1rem 1.5rem;
   background: #252526;
   border-bottom: 1px solid #3e3e42;
+  gap: 1rem;
 }
 
 .header-left .title {
   color: #fff;
   font-family: 'Noto Sans KR', sans-serif;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.header-center .select {
+  width: 100%;
+}
+
+.header-center select {
+  background: #3c3c3c;
+  color: #d4d4d4;
+  border: 1px solid #3e3e42;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 100%;
+}
+
+.header-center select:hover {
+  background: #4a4a4a;
+  border-color: #569cd6;
+}
+
+.header-center select:focus {
+  border-color: #569cd6;
+  box-shadow: 0 0 0 0.125em rgba(86, 156, 214, 0.25);
 }
 
 .header-right {

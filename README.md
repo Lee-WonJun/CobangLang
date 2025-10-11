@@ -2,7 +2,7 @@
 보통 개발자를 위한 보통이 아닌 언어 `Cobang` 에 오신것을 환영합니다. 
 ```
 알로하~ 원준님
-저 필요하신분~~~ 원준님 ?
+저 필요하신분~~~ 원준님?
 원준님 요즘 어떠신가요?
 ```
 
@@ -12,7 +12,7 @@ Cobang 은 Fin-tech 에 딱히 최적화 되지는 않았지만, Fin-tech 회사
 
 
 # 사용해보기
-[[WEB (WASM)]](https://lee-wonjun.github.io/CobangLang/) 에서 바로 사용 가능합니다.
+F# Bolero 로 작성되어  [WEB Browser (WASM)]](https://lee-wonjun.github.io/CobangLang/) 에서 바로 사용 가능합니다.
 
 # 문법
 
@@ -21,6 +21,11 @@ Cobang 은 Fin-tech 에 딱히 최적화 되지는 않았지만, Fin-tech 회사
 알로하~ 원준님
 ```
 변수를 선언하고 0으로 초기화합니다.
+
+```
+알로하~ 원준님 준원님
+```
+원준님 변수를 선언하고 준원님 변수의 값으로 초기화합니다.
 
 ## 변수 증감
 ```

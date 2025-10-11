@@ -7,6 +7,7 @@ open Bolero
 open FParsec
 open Parser
 open Interpreter
+open Storage
 
 
 // Import only the AST module
@@ -21,7 +22,7 @@ type Model =
 
 let initModel =
     {
-        code = ""
+        code = Storage.InitialCode
         output = ""
     }
 

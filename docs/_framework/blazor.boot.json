@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "CobangLang.Client",
   "resources": {
-    "hash": "sha256-UUNw28qzyDBlGZ4/uNmpay5h/SNB07qflI93eUzVp5M=",
+    "hash": "sha256-7iyN3WDc80KAD8xaEkGeh3pLl0HNfIMUAaXcxmXdIM4=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -13,7 +13,7 @@
     },
     "coreAssembly": {},
     "assembly": {
-      "Bolero.wasm": "sha256-aJR18FSLbHfxXJ2SVEB+w7tQkTFcT0DK1mQWNe6pe+E=",
+      "Bolero.wasm": "sha256-QC2fjNj4tXTMFZ9vOjaX3iDQvTnlM/qThj/6nVAWvRQ=",
       "Elmish.wasm": "sha256-fv72F794SxrYCDkggLOY1lvddX6aqWPhIa5C4hb6sBw=",
       "FParsec.wasm": "sha256-+0oqshIDgup075w7u+ruw9suZ0Llqlof1ivAFCLB0X8=",
       "FParsecCS.wasm": "sha256-4fxAlgO4dq+bvWWGnUC6pdOvGh1Qfwlq/ZB6pbP+X48=",
@@ -53,14 +53,14 @@
       "System.Private.Uri.wasm": "sha256-mKFR/DJJdhh3JSpVG+ByjludwXNdmkKFuQnbq265tEY=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-yZ+Z6Ds6n3P/NW9CBYC3m9L6eAMv+sCrpEt/Du2Jogs=",
       "System.Runtime.Numerics.wasm": "sha256-FFqBxJWNhlCt/8RBaa6jTpyKllE1+pbEfZFHc6nXjyg=",
-      "System.Runtime.wasm": "sha256-IMkNvTagzy5R6N8rQ4oop9WveY6FOVHE4CrjTEI8sJA=",
+      "System.Runtime.wasm": "sha256-z5HbB+65d8a5S15b4Ov6mRb1GTdw25klUdmVhRmndVo=",
       "System.Text.Encodings.Web.wasm": "sha256-3ztZRh4vShIqq9uGNy9DSmRpTA8iafnopy2y0AZ/1Yw=",
       "System.Text.Json.wasm": "sha256-gjHFJJf8DKBspIq6/8ZieVV1F/pF+tBrZ/qXV3xO7qw=",
       "System.Text.RegularExpressions.wasm": "sha256-P7Og6SOnE/Mm6uxxkuDTrc7oTssXRyFLxGRFnFK6NB8=",
       "System.Threading.Tasks.Parallel.wasm": "sha256-htHjZIChrQvaXfy4/f62OzfPtCCKyhbp53E43sQYqK0=",
       "netstandard.wasm": "sha256-MsJjlGBB2dQeFqUKMMH5gH56UX4ofhlFYrOTKW2cudc=",
       "System.Private.CoreLib.wasm": "sha256-9HEaV7mhaXaNdmpaAudOLC+3tBg8rxatHfVBCqGbwrY=",
-      "CobangLang.Client.wasm": "sha256-o1Hhqy6dy8ylF7zsqA4vVRf3Yop58OwtAfgMVVMP30s="
+      "CobangLang.Client.wasm": "sha256-nvuKaCEAuzEiumGrVKCAeC3j/zSMsp0fEVmC4a9VZUQ="
     }
   },
   "cacheBootResources": true,

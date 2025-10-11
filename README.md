@@ -12,7 +12,7 @@ Cobang 은 Fin-tech 에 딱히 최적화 되지는 않았지만, Fin-tech 회사
 
 
 # 사용해보기
-F# Bolero 로 작성되어  [WEB Browser (WASM)]](https://lee-wonjun.github.io/CobangLang/) 에서 바로 사용 가능합니다.
+F# Bolero 로 작성되어  [WEB Browser (WASM)](https://lee-wonjun.github.io/CobangLang/) 에서 바로 사용 가능합니다.
 
 # 문법
 

@@ -289,6 +289,16 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+.navbar .button.is-dark.is-outlined {
+  border-color: #fff;
+  color: #fff;
+}
+
+.navbar .button.is-dark.is-outlined:hover {
+  background-color: #fff;
+  color: #363636;
+}
+
 @media (max-width: 768px) {
   .editor-panels {
     grid-template-columns: 1fr;
